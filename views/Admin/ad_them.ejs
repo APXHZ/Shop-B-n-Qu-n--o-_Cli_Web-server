@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thêm Sảm Phẩm</title>
+    <link rel="shortcut icon" href="images/Upload.png" type="image/x-icon">
+    <link rel="stylesheet" href="/bootstrap-5.2.3-dist/css/bootstrap.min.css">
+
+    
+</head>
+<body>
+<%- include('../inc/top') %>
+  
+
+<script>
+    function thongbao(){
+     alert('<%= msg %>')
+    }
+ </script>
+<% let objSP={} %>
+
+
+<div style="padding-top: 3%;">   
+<div class="container py-2 border border-warning border-3 bg-warning bg-opacity-50 rounded-3 ">
+    <h1 class="text-center mb-4">Thêm mới sản phẩm</h1>
+  
+    <form action="" method="post">
+      <div class="row mb-3">
+        <div class="col-md-2 text-end">
+          <label for="TenSP" class="form-label">Tên sản phẩm:</label>
+        </div>
+        <div class="col-md-10">
+          <input type="text" name="TenSP" value="<%= objSP.TenSP %>" class="form-control" placeholder="Tên sản phẩm">
+        </div>
+      </div>
+  
+      <div class="row mb-3">
+        <div class="col-md-2 text-end">
+          <label for="Giatien" class="form-label">Giá:</label>
+        </div>
+        <div class="col-md-10">
+          <input type="text" name="Giatien" value="<%= objSP.Giatien %>" class="form-control" placeholder="Giá">
+        </div>
+      </div>
+  
+      <div class="row mb-3">
+        <div class="col-md-2 text-end">
+          <label for="Hinhanh" class="form-label">Hình ảnh:</label>
+        </div>
+        <div class="col-md-10">
+          <input type="text" name="Hinhanh" class="form-control" onchange="previewImage(event)" placeholder="Link:">
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <div class="col-md-2 text-end">
+          <label for="Thongtin" class="form-label">Thông Tin:</label>
+        </div>
+        <div class="col-md-10">
+          <input type="text" name="Thongtin" value="<%= objSP.Thongtin %>" class="form-control" placeholder="Thongtin">
+        </div>
+      </div>
+      
+      <div class="row mb-3">
+        <div class="col-md-2 text-end">
+          <label for="theloai" class="form-label">Thể loại:</label>
+        </div>
+        <div class="col-md-10">
+             
+            <select name="Theloai" class="form-select" >
+              <option selected> Chọn Thể Loại</option>
+                <% listTheloai.forEach( (row)=>{
+                    let selected = '';
+                    if(  String ( row._id) == String( objSP.Theloai)  )
+                        selected = '  selected  ';
+                    %>
+                    <option   <%= selected %>
+                            value="<%= row._id  %>">  
+                            <%= row.TenTheloai  %>  </option>
+                <%   }) %>
+            </select>
+
+
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <div class="col-md-2 text-end">
+          <label for="Size" class="form-label">Size:</label>
+        </div>
+        <div class="col-md-10">
+             
+            <select name="Size" class="form-select" >
+              <option selected> Chọn Size</option>
+                <% listSize.forEach( (row)=>{
+                    let selected = '';
+                    if(  String ( row._id) == String( objSP.Size)  )
+                        selected = '  selected  ';
+                    %>
+                    <option   <%= selected %>
+                            value="<%= row._id  %>">  
+                            <%= row.Tensize  %>  </option>
+                <%   }) %>
+            </select>
+
+
+        </div>
+      </div>
+
+
+
+
+      <div class="row mb-3">
+        <div class="col-md-2 text-end">
+          <label for="Soluong" class="form-label">Số lượng:</label>
+        </div>
+        <div class="col-md-10">
+          <input type="text" name="Soluong" value="<%= objSP.Soluong %>" class="form-control" placeholder="Soluong">
+        </div>
+      </div>
+   
+
+    
+  
+      <div class="row mb-3 justify-content-center">
+        <div class="col-md-4 text-center">
+          <button type="submit" onclick="thongbao()" class="btn btn-primary w-100 ">Thêm sản phẩm</button>
+        </div>
+      </div>
+    </form>
+  </div>
+  
+</div>
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+ <h1>Ad _ them</h1>
+</body>
+</html>
