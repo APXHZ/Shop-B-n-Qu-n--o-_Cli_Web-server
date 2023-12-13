@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Danh Sách Đơn Hàng</title>
+    <link rel="shortcut icon" href="images/Upload.png" type="image/x-icon">
+    <link rel="stylesheet" href="/bootstrap-5.2.3-dist/css/bootstrap.min.css">
+</head>
+<body>
+<%- include('../inc/top') %>
+
+<div class="container">
+    <div class="row">
+        <% donhang.forEach(function(don) { %>
+            <div class="col-sm-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title"><%= don.Tenuser.Tenuser %></h5>
+                        <p class="card-text">
+                            Email: <%= don.email.email %><br>
+                            Địa chỉ: <%= don.Diachi.Diachi %><br>
+                            Số điện thoại: <%= don.Sdt.Sdt %><br>
+                            Số lượng hàng: <%= don.Soluonghang %><br>
+                            Tên hàng: <%= don.Tenhang.TenSP %>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        <% }); %>
+    </div>
+</div>
+
+
+<h1>AD _ Đơn</h1>
+</body>
+</html>

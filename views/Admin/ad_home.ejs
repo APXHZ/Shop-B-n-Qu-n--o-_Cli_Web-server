@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Danh Sách Sản Phẩm</title>
+    <link rel="shortcut icon" href="images/Upload.png" type="image/x-icon">
+    <link rel="stylesheet" href="/bootstrap-5.2.3-dist/css/bootstrap.min.css">
+
+    
+</head>
+<body>
+<%- include('../inc/top') %>
+  
+
+<div class="container">
+ 
+  <!-- search -->
+  <div class="d-flex"> 
+  <form  role="search">
+  <div class="input-group">
+    <input type="search" aria-label="Search" name="TenSP" class="form-control" placeholder="Tìm kiếm...">
+    <button class="btn btn-primary" type="submit"><i class="fas fa-search">FIND</i></button>
+  </div>
+</form>
+ <div>
+
+  <img src="../../public/images/icon_shop.png" style="height: 30dp; width: 30dp;" >
+ </div>
+ 
+
+</div> 
+
+<img src="../../public/images/backround.jpg" alt="" srcset="">
+  <div class="row">
+    <% sanphammoles.forEach( (row) => {  %>
+      <div class="col-md-2">
+        <a href="/admin/sua?id=<%= row._id %>" class="text-decoration-none text-dark">
+          <div class="card mb-4 shadow-sm">
+            <img src="<%= row.Hinhanh %>" alt="" class="bd-placeholder-img card-img-top" height="225">
+            <div class="card-body">
+              <!-- Phần 1 -->
+              <h5 class="card-title"><%= row.TenSP %></h5>
+              <p class="card-text"><%= row.Thongtin %></p>
+  
+              <!-- Phần 2 -->
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="d-flex justify-content-start align-items-center">
+                    
+                    <small class="text-muted"><%= row.Trangthai ? row.Trangthai.Trangthai : 'Không xác định' %></small>
+
+                </div>
+                <div class="d-flex justify-content-end align-items-center">
+                  <small class="text-danger text-decoration-underline">đ</small>
+                  <small class="text-muted " ><%= row.Giatien %></small>
+                </div>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+    <%  });   %>
+  </div>
+</div>
+
+  
+  
+  
+
+
+
+
+
+ <h1>AD _ Home</h1>
+</body>
+</html>

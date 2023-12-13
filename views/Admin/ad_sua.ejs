@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sửa Sảm Phẩm</title>
+  <link rel="shortcut icon" href="images/Upload.png" type="image/x-icon">
+  <link rel="stylesheet" href="/bootstrap-5.2.3-dist/css/bootstrap.min.css">
+
+
+</head>
+
+<body>
+  <%- include('../inc/top') %>
+
+
+    <script>
+      function thongbao() {
+        alert('<%= msg %>')
+      }
+      
+    </script>
+
+
+<div style="padding-top: 3%;">
+  <div class="container py-2 border border-warning border-3 bg-warning bg-opacity-50 rounded-3">
+    <h1 class="text-center mb-4">Sửa sản phẩm</h1>
+
+    <form action="" method="post" class="row g-3">
+      <input type="hidden" name="id" value="<%= objSP._id %>">
+      
+      <!-- Các trường thông tin khác bên trái -->
+      <div class="col-md-8">
+        <!-- Tên sản phẩm -->
+        <div class="row mb-3">
+          <div class="col-md-4 text-end">
+            <label for="TenSP" class="form-label">Tên sản phẩm:</label>
+          </div>
+          <div class="col-md-8">
+            <input type="text" name="TenSP" value="<%= objSP.TenSP %>" class="form-control" placeholder="Tên sản phẩm">
+          </div>
+        </div>
+
+        <!-- Giá -->
+        <div class="row mb-3">
+          <div class="col-md-4 text-end">
+            <label for="Giatien" class="form-label">Giá:</label>
+          </div>
+          <div class="col-md-8">
+            <input type="text" name="Giatien" value="<%= objSP.Giatien %>" class="form-control" placeholder="Giá">
+          </div>
+        </div>
+
+        <!-- Thể loại-->
+        <div class="row mb-3">
+          <div class="col-md-2 text-end">
+            <label for="theloai" class="form-label">Thể loại:</label>
+          </div>
+          <div class="col-md-10">
+
+            <select name="Theloai" class="form-select">
+              <option selected> Chọn Thể Loại</option>
+              <% listTheloai.forEach( (row)=>{
+                let selected = '';
+                if( String ( row._id) == String( objSP.Theloai) )
+                selected = ' selected ';
+                %>
+                <option <%=selected %>
+                  value="<%= row._id %>">
+                    <%= row.TenTheloai %>
+                </option>
+                <% }) %>
+            </select>
+          </div>
+        </div>
+
+        <!-- Size-->
+        <div class="row mb-3">
+          <div class="col-md-2 text-end">
+            <label for="Size" class="form-label">Size:</label>
+          </div>
+          <div class="col-md-10">
+            <select name="Size" class="form-select">
+              <option selected> Chọn Size</option>
+              <% listSize.forEach( (row)=>{
+                let selected = '';
+                if( String ( row._id) == String( objSP.Size) )
+                selected = ' selected ';
+                %>
+                <option <%=selected %>
+                  value="<%= row._id %>">
+                    <%= row.Tensize %>
+                </option>
+                <% }) %>
+            </select>
+          </div>
+        </div>
+
+
+        <!-- Số lượng -->
+        <div class="row mb-3">
+              <div class="col-md-2 text-end">
+                <label for="Soluong" class="form-label">Số lượng:</label>
+              </div>
+              <div class="col-md-10">
+                <input type="text" name="Soluong" value="<%= objSP.Soluong.Soluong %>" class="form-control"
+                  placeholder="Soluong">
+              </div>
+            </div>
+      </div>
+      
+      <!-- Hình ảnh từ URL và Hình ảnh tải lên từ thiết bị bên phải -->
+      <div class="col-md-4 text-center">
+        <!-- Hình ảnh từ URL -->
+        <div class="mb-1">
+          <label for="Hinhanh" class="form-label">Hình ảnh từ URL:</label>
+          <input type="text" id="Hinhanh" name="Hinhanh" class="form-control" onchange="previewImageFromURL()" placeholder="Link:" value="<%= objSP.Hinhanh %>">
+          <img id="preview" src="<%= objSP.Hinhanh %>" alt="Hình ảnh sản phẩm" style="max-width: 40%; max-height: 40%;">
+        </div>
+
+        <!-- Hình ảnh tải lên từ thiết bị -->
+        <div class="mb-3">
+          <label for="UploadHinhanh" class="form-label">Tải ảnh lên:</label>
+          <input type="file" id="UploadHinhanh" name="UploadHinhanh" class="form-control" onchange="previewImageFromFile(event)">
+          <img id="previewUpload" src="" alt="Hình ảnh tải lên" style="max-width: 40%; max-height: 40%;">
+        </div>
+      </div>
+      <!-- Script để cập nhật hình ảnh khi người dùng nhập URL -->
+          <script>
+          document.getElementById('Hinhanh').addEventListener('blur', function() {
+            document.getElementById('preview').src = this.value;
+          });
+          // Tải ảnh từ thiết bị
+          document.getElementById('Hinhanh').addEventListener('blur', function() {
+          document.getElementById('preview').src = this.value;
+        });
+
+        function previewImageFromFile(event) {
+          var reader = new FileReader();
+          reader.onload = function() {
+            var output = document.getElementById('previewUpload');
+            output.src = reader.result;
+          };
+          reader.readAsDataURL(event.target.files[0]);
+        }
+          </script>
+    </form>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h1>Ad _ sua</h1>
+</body>
+
+</html>

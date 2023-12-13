@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Thông tin người dùng</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+  <%- include('../inc/top') %>
+  <div class="container">
+    <h1 class="text-center my-4">Thông tin người dùng</h1>
+    <div class="row">
+      <div class="col-md-6 offset-md-3">
+        <ul class="list-group">
+          <li class="list-group-item">Tên đăng nhập: <%= user.username %></li>
+          <li class="list-group-item">Tên người dùng: <%= user.Tenuser %></li>
+          <li class="list-group-item">Email: <%= user.email %></li>
+          <li class="list-group-item">Địa chỉ: <%= user.Diachi %></li>
+          <li class="list-group-item">Số điện thoại: <%= user.Sdt %></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>

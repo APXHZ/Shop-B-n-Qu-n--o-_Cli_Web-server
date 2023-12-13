@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chi tiết sản phẩm</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+</head>
+<body>
+    <%- include('../inc/top') %>
+    <div class="container mt-5">
+        <div class="card">
+            <div class="row no-gutters">
+                <div class="col-md-4">
+                    <img src="<%= objSP.Hinhanh %>" class="card-img" alt="<%= objSP.TenSP %>">
+                </div>
+                <div class="col-md-8 bg-warning text-light bg-opacity-25">
+                    <div class="card-body bg-info">
+                        <h5 class="card-title"><%= objSP.TenSP %></h5>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <p class="card-text">Thể loại: <%= objSP.Theloai.TenTheloai %></p>
+                                <p class="card-text">Size: <%= objSP.Size.Tensize %></p>
+                                <p class="card-text">Trạng thái: <%= objSP.Trangthai.Trangthai %></p>
+                                <p class="card-text">Số lượng: <%= objSP.Soluong.Soluong %></p>
+                                <h6 class="card-title text-danger">
+                                     Giá: <%= objSP.Giatien %><small class="text-danger text-decoration-underline"> đ</small> </h6>
+                               
+                            </div>
+                            <div class="col-md-6">
+                                 <div class="col-md-12 bg-secondary">
+                                    <p class="card-text">Mô Tả: 
+                                        <span id="description" class="short-description"><%= objSP.Thongtin %></span>
+                                        <% if(objSP.Thongtin.length > 100) { %>
+                                            <button class="btn btn-link" onclick="toggleDescription()">Xem thêm</button>
+                                        <% } %>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <% if(objSP.Soluong.Soluong > 0 && objSP.Trangthai.Trangthai !== 'Hết hàng') { %>
+                            <button class="btn btn-primary">Đặt hàng</button>
+                        <% } %>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function toggleDescription() {
+            const description = document.getElementById('description');
+            description.classList.toggle('full-description');
+        }
+    </script>
+    
+    <style>
+        .short-description {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 3; /* Số dòng hiển thị tối đa */
+            -webkit-box-orient: vertical;
+        }
+    
+        .full-description {
+            display: block;
+        }
+        .card-img {
+        max-width: 100%; /* Đảm bảo hình ảnh không tràn ra khỏi khung */
+        height: auto;
+    }
+    </style>
+    
+    
+    
+</body>
+</html>

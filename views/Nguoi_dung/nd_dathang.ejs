@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đặt hàng</title>
+</head>
+<body>
+    <%- include('../inc/top') %>
+    <h1>Đặt hàng</h1>
+    <form action="/sanpham/order" method="post">
+        <label for="product">Sản phẩm:</label><br>
+        <input type="text" id="product" name="product"><br>
+        <label for="quantity">Số lượng:</label><br>
+        <input type="number" id="quantity" name="quantity"><br>
+        <label for="address">Địa chỉ:</label><br>
+        <input type="text" id="address" name="address"><br>
+        <input type="submit" value="Đặt hàng">
+    </form>
+</body>
+</html>
