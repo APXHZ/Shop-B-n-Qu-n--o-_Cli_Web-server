@@ -4,8 +4,9 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+//session
+var session = require('express-session')
+
 var app = express();
 
 // view engine setup
@@ -18,17 +19,37 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
 
+// nên để trước tất cả các đường dẫn hoặc link 
+app.use(session({
+  secret: 'AAAAAAAAAAAAAAAAAAAABBBBBBBBBBB',
+  resave: false,
+  saveUninitialized: true,
+  // cookie: { secure: true } // bỏ qua nếu cần thiết
+}))
 
 //api
 var apiRouter = require('./routes/rounter_api');
 
 // Web
 var quanaoRouter = require('./routes/rounter_quanao');
+app.use('/product', quanaoRouter);
 
-app.use('/quanao', quanaoRouter);
+var loginRounter =require("./routes/rounter_login");
+app.use('/login',loginRounter);
+
+var adminRounter =require("./routes/rounter_admin");
+app.use('/admin',adminRounter);
+
+var usersRouter =require("./routes/rounter_user");
+app.use('/user',usersRouter);
+
+
+
+
+
+
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

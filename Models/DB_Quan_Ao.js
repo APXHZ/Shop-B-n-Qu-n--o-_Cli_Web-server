@@ -7,11 +7,14 @@ var userSchema = new db.mongoose.Schema(
     email: { type: String, require: false },
     Diachi: { type: String, require: false },
     Sdt: { type: Number, require: false },
+    role : { type: Number, require: true, default:1 }, // Mặc định role 1 là người dùng 
   },
   {
     collection: "User",
   }
 );
+let User = db.mongoose.model("User", userSchema);
+
 let userModel = db.mongoose.model("userModel", userSchema);
 
 var sanphamSchema = new db.mongoose.Schema(
@@ -83,6 +86,26 @@ TrangthaiSanphamSchema.pre('save', function(next) {
 
 let TrangthaiSanphamModel = db.mongoose.model("TrangthaiSanphamModel", TrangthaiSanphamSchema);
 
+var DonHangSchema = new db.mongoose.Schema(
+  {
+    Tenuser: { type: db.mongoose.Schema.Types.ObjectId, ref: "userModel" },
+    email: { type: db.mongoose.Schema.Types.ObjectId, ref: "userModel" },
+    Diachi: { type: db.mongoose.Schema.Types.ObjectId, ref: "userModel" },
+    Sdt: { type: db.mongoose.Schema.Types.ObjectId, ref: "userModel" },
+    Soluonghang: { type: Number, require: true },
+    Tenhang: { type: db.mongoose.Schema.Types.ObjectId, ref: "SanphamModel" },
+    Xacnhan: { type: Boolean, default: false }
+  },
+  {
+    collation: { locale: 'en_US', strength: 1 },
+    collection: "SanPham_DatHang",
+  }
+);
+
+let DonHangModel = db.mongoose.model("DonHangModel", DonHangSchema);
+
+
+
 
 module.exports = {
   userModel,
@@ -90,5 +113,8 @@ module.exports = {
   TheloaiSanphamModel,
   SizeSanphamModel,
   TrangthaiSanphamModel,
+  DonHangModel,
 
+
+  User
 };

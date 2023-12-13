@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thông tin người dùng</title>
+</head>
+<body>
+    <%- include('../inc/top') %>
+    <h1>Thông tin người dùng</h1>
+    <p>Tên người dùng: <%= user.username %></p>
+    <p>Email: <%= user.email %></p>
+    <p>Địa chỉ: <%= user.Diachi %></p>
+    <p>Số điện thoại: <%= user.Sdt %></p>
+    <p>Vai trò: <%= user.role === 2 ? 'Admin' : 'User' %></p>
+</body>
+</html>
